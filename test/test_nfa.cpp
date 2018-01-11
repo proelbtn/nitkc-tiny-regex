@@ -38,3 +38,15 @@ TEST(NFA, OPERATOR_OR) {
     EXPECT_EQ(n.start()->second()->first()->rule(), NFAState::TR_EPSILON);
     EXPECT_EQ(n.start()->first()->first()->first(), n.start()->second()->first()->first());
 }
+
+TEST(NFA, OPERATOR_ASTERISK) {
+    const char rule = 'a';
+    NFA n(rule), n_star = *n;
+
+    EXPECT_EQ(n_star.start()->first(), n.start());
+    EXPECT_EQ(n_star.start()->first()->rule(), rule);
+    EXPECT_EQ(n_star.start()->first()->first(), n.end());
+    EXPECT_EQ(n_star.start()->first()->first()->rule(), NFAState::TR_EPSILON);
+    EXPECT_EQ(n_star.start()->first()->first()->first(), n_star.start());
+    EXPECT_EQ(n_star.start()->second(), n_star.end());
+}

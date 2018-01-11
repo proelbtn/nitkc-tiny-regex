@@ -58,6 +58,21 @@ namespace tiny_regex {
         return nfa;
     }
 
+    NFA NFA::operator*() const {
+        NFA nfa;
+        NFAStateRef start = NFAState::create(), end = NFAState::create();
+
+        start->link_to(this->start(), end);
+        this->end()->link_to(start);
+
+        nfa.states.insert({start, end});
+        nfa.states.insert(this->states.cbegin(), this->states.cend());
+        nfa.start_state = start;
+        nfa.end_state = end;
+
+        return nfa;
+    }
+
     NFA regex2nfa(std::string regex) {
         NFA nfa;
     }

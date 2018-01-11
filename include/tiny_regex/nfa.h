@@ -45,6 +45,7 @@ namespace tiny_regex {
         NFA(const char rule);
         NFAStateRef start() const;
         NFAStateRef end() const;
+        NFA operator*() const;
 
         friend NFA operator&(const NFA& n1, const NFA& n2);
         friend NFA operator|(const NFA& n1, const NFA& n2);
