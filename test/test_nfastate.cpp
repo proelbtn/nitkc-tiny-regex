@@ -26,30 +26,35 @@ protected:
 
 TEST_F(twoNFAStates, IMPLICIT_LINK_TO) {
     s1->link_to(s2);
-    ASSERT_EQ(s2, s1->trans_rules.first.trans_des.lock());
-    ASSERT_EQ(NFALink::TR_EPSILON, s1->trans_rules.first.trans_rule);
+    EXPECT_EQ(s1->rule(), NFAState::TR_EPSILON);
+    EXPECT_EQ(s1->first(), s2);
 }
 
 TEST_F(twoNFAStates, EXPLICIT_LINK_TO) {
     char rule = 'a';
     s1->link_to(s2, rule);
-    ASSERT_EQ(s2, s1->trans_rules.first.trans_des.lock());
-    ASSERT_EQ(rule, s1->trans_rules.first.trans_rule);
+    EXPECT_EQ(s1->rule(), rule);
+    EXPECT_EQ(s1->first(), s2);
 }
 
 TEST_F(threeNFAStates, IMPLICIT_LINK_TO) {
     s1->link_to(s2, s3);
-    ASSERT_EQ(s2, s1->trans_rules.first.trans_des.lock());
-    ASSERT_EQ(s3, s1->trans_rules.second.trans_des.lock());
-    ASSERT_EQ(NFALink::TR_EPSILON, s1->trans_rules.first.trans_rule);
-    ASSERT_EQ(NFALink::TR_EPSILON, s1->trans_rules.second.trans_rule);
+    EXPECT_EQ(s1->rule(), NFAState::TR_EPSILON);
+    EXPECT_EQ(s1->first(), s2);
+    EXPECT_EQ(s1->second(), s3);
 }
 
 TEST_F(threeNFAStates, EXPLICIT_LINK_TO) {
     char rule = 'a';
     s1->link_to(s2, s3, rule);
-    ASSERT_EQ(s2, s1->trans_rules.first.trans_des.lock());
-    ASSERT_EQ(s3, s1->trans_rules.second.trans_des.lock());
-    ASSERT_EQ(rule, s1->trans_rules.first.trans_rule);
-    ASSERT_EQ(rule, s1->trans_rules.second.trans_rule);
+    EXPECT_EQ(s1->rule(), rule);
+    EXPECT_EQ(s1->first(), s2);
+    EXPECT_EQ(s1->second(), s3);
+}
+
+TEST_F(twoNFAStates, COPY_FROM) {
+    NFAStateRef s3 = NFAState::create(), s4 = NFAState::create();
+    s2->link_to(s3, s4);
+    s1->copy_from(s2);
+    EXPECT_EQ(s1->first(), s2->first());
 }
