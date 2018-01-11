@@ -33,13 +33,6 @@ namespace tiny_regex {
         this->trans_states.second = s2;
     }
 
-    void NFAState::copy_from(NFAStateWeakRef ws) {
-        NFAStateRef s = ws.lock();
-        this->trans_rule = s->trans_rule;
-        this->trans_states.first = s->trans_states.first;
-        this->trans_states.second = s->trans_states.second;
-    }
-
     NFAStateRef NFAState::create() {
         return std::make_shared<NFAState>();
     }

@@ -17,6 +17,21 @@ namespace tiny_regex {
         this->end_state = s2;
     }
 
+    NFA NFA::operator*() const {
+        NFA nfa;
+        NFAStateRef start = NFAState::create(), end = NFAState::create();
+
+        start->link_to(this->start(), end);
+        this->end()->link_to(start);
+
+        nfa.states.insert({start, end});
+        nfa.states.insert(this->states.cbegin(), this->states.cend());
+        nfa.start_state = start;
+        nfa.end_state = end;
+
+        return nfa;
+    }
+
     NFAStateRef NFA::start() const {
         return this->start_state.lock();
     }
@@ -25,14 +40,17 @@ namespace tiny_regex {
         return this->end_state.lock();
     }
 
+    size_t NFA::size() const {
+        return this->states.size();
+    }
+
     NFA operator&(const NFA& n1, const NFA& n2) {
         NFA nfa;
 
         nfa.states.insert(n1.states.cbegin(), n1.states.cend());
         nfa.states.insert(n2.states.cbegin(), n2.states.cend());
-        nfa.states.erase(n2.start());
 
-        n1.end()->copy_from(n2.start());
+        n1.end()->link_to(n2.start());
 
         nfa.start_state = n1.start();
         nfa.end_state = n2.end();
@@ -56,25 +74,6 @@ namespace tiny_regex {
         nfa.end_state = s2;
 
         return nfa;
-    }
-
-    NFA NFA::operator*() const {
-        NFA nfa;
-        NFAStateRef start = NFAState::create(), end = NFAState::create();
-
-        start->link_to(this->start(), end);
-        this->end()->link_to(start);
-
-        nfa.states.insert({start, end});
-        nfa.states.insert(this->states.cbegin(), this->states.cend());
-        nfa.start_state = start;
-        nfa.end_state = end;
-
-        return nfa;
-    }
-
-    NFA regex2nfa(std::string regex) {
-        NFA nfa;
     }
 }
 

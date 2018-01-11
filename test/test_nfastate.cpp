@@ -51,10 +51,3 @@ TEST_F(threeNFAStates, EXPLICIT_LINK_TO) {
     EXPECT_EQ(s1->first(), s2);
     EXPECT_EQ(s1->second(), s3);
 }
-
-TEST_F(twoNFAStates, COPY_FROM) {
-    NFAStateRef s3 = NFAState::create(), s4 = NFAState::create();
-    s2->link_to(s3, s4);
-    s1->copy_from(s2);
-    EXPECT_EQ(s1->first(), s2->first());
-}

@@ -25,7 +25,6 @@ namespace tiny_regex {
         NFAStateRef second() const;
         void link_to(NFAStateWeakRef s1, const char rule = NFAState::TR_EPSILON);
         void link_to(NFAStateWeakRef s1, NFAStateWeakRef s2, const char rule = NFAState::TR_EPSILON);
-        void copy_from(NFAStateWeakRef s);
 
         static char TR_UNDEFINED;
         static char TR_EPSILON;
@@ -43,15 +42,14 @@ namespace tiny_regex {
     public:
         NFA();
         NFA(const char rule);
+        NFA operator*() const;
         NFAStateRef start() const;
         NFAStateRef end() const;
-        NFA operator*() const;
+        size_t size() const;
 
         friend NFA operator&(const NFA& n1, const NFA& n2);
         friend NFA operator|(const NFA& n1, const NFA& n2);
     };
-
-
 }
 
 
