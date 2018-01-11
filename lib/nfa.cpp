@@ -21,23 +21,31 @@ namespace tiny_regex {
         NFA nfa;
         NFAStateRef start = NFAState::create(), end = NFAState::create();
 
-        start->link_to(this->start(), end);
-        this->end()->link_to(start);
+        start->link_to(this->entry(), end);
+        this->exit()->link_to(start);
 
         nfa.states.insert({start, end});
-        nfa.states.insert(this->states.cbegin(), this->states.cend());
+        nfa.states.insert(this->cbegin(), this->cend());
         nfa.start_state = start;
         nfa.end_state = end;
 
         return nfa;
     }
 
-    NFAStateRef NFA::start() const {
+    NFAStateRef NFA::entry() const {
         return this->start_state.lock();
     }
 
-    NFAStateRef NFA::end() const {
+    NFAStateRef NFA::exit() const {
         return this->end_state.lock();
+    }
+
+    NFAStateRefSet::const_iterator NFA::cbegin() const {
+        return this->states.cbegin();
+    }
+
+    NFAStateRefSet::const_iterator NFA::cend() const {
+        return this->states.cend();
     }
 
     size_t NFA::size() const {
@@ -47,13 +55,13 @@ namespace tiny_regex {
     NFA operator&(const NFA& n1, const NFA& n2) {
         NFA nfa;
 
-        nfa.states.insert(n1.states.cbegin(), n1.states.cend());
-        nfa.states.insert(n2.states.cbegin(), n2.states.cend());
+        nfa.states.insert(n1.cbegin(), n1.cend());
+        nfa.states.insert(n2.cbegin(), n2.cend());
 
-        n1.end()->link_to(n2.start());
+        n1.exit()->link_to(n2.entry());
 
-        nfa.start_state = n1.start();
-        nfa.end_state = n2.end();
+        nfa.start_state = n1.entry();
+        nfa.end_state = n2.exit();
 
         return nfa;
     }
@@ -63,12 +71,12 @@ namespace tiny_regex {
         NFAStateRef s1 = NFAState::create(), s2 = NFAState::create();
 
         nfa.states.insert({s1, s2});
-        nfa.states.insert(n1.states.cbegin(), n1.states.cend());
-        nfa.states.insert(n2.states.cbegin(), n2.states.cend());
+        nfa.states.insert(n1.cbegin(), n1.cend());
+        nfa.states.insert(n2.cbegin(), n2.cend());
 
-        s1->link_to(n1.start(), n2.start());
-        n1.end()->link_to(s2);
-        n2.end()->link_to(s2);
+        s1->link_to(n1.entry(), n2.entry());
+        n1.exit()->link_to(s2);
+        n2.exit()->link_to(s2);
 
         nfa.start_state = s1;
         nfa.end_state = s2;

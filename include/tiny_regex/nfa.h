@@ -11,6 +11,7 @@ namespace tiny_regex {
 
     typedef std::weak_ptr<NFAState> NFAStateWeakRef;
     typedef std::shared_ptr<NFAState> NFAStateRef;
+    typedef std::set<NFAStateRef> NFAStateRefSet;
 
     class NFAState {
     private:
@@ -37,14 +38,16 @@ namespace tiny_regex {
     private:
         NFAStateWeakRef start_state;
         NFAStateWeakRef end_state;
-        std::set<NFAStateRef> states;
+        NFAStateRefSet states;
 
     public:
         NFA();
         NFA(const char rule);
         NFA operator*() const;
-        NFAStateRef start() const;
-        NFAStateRef end() const;
+        NFAStateRef entry() const;
+        NFAStateRef exit() const;
+        NFAStateRefSet::const_iterator cbegin() const;
+        NFAStateRefSet::const_iterator cend() const;
         size_t size() const;
 
         friend NFA operator&(const NFA& n1, const NFA& n2);

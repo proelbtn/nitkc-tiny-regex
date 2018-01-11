@@ -6,8 +6,8 @@ using namespace tiny_regex;
 TEST(NFA, SINGLE_CHAR_CONSTRUCTOR) {
     const char rule = 'a';
     NFA n(rule);
-    EXPECT_EQ(n.start()->rule(), rule);
-    EXPECT_EQ(n.start()->first(), n.end());
+    EXPECT_EQ(n.entry()->rule(), rule);
+    EXPECT_EQ(n.entry()->first(), n.exit());
 }
 
 TEST(NFA, OPERATOR_AND) {
@@ -15,14 +15,14 @@ TEST(NFA, OPERATOR_AND) {
     NFA n1(rule1), n2(rule2);
     NFA n = n1 & n2;
 
-    EXPECT_EQ(n.start(), n1.start());
-    EXPECT_EQ(n.start()->rule(), rule1);
-    EXPECT_EQ(n.start()->first(), n1.end());
-    EXPECT_EQ(n.start()->first()->rule(), NFAState::TR_EPSILON);
-    EXPECT_EQ(n.start()->first()->first(), n2.start());
-    EXPECT_EQ(n.start()->first()->first()->rule(), rule2);
-    EXPECT_EQ(n.start()->first()->first()->first(), n2.end());
-    EXPECT_EQ(n.start()->first()->first()->first(), n.end());
+    EXPECT_EQ(n.entry(), n1.entry());
+    EXPECT_EQ(n.entry()->rule(), rule1);
+    EXPECT_EQ(n.entry()->first(), n1.exit());
+    EXPECT_EQ(n.entry()->first()->rule(), NFAState::TR_EPSILON);
+    EXPECT_EQ(n.entry()->first()->first(), n2.entry());
+    EXPECT_EQ(n.entry()->first()->first()->rule(), rule2);
+    EXPECT_EQ(n.entry()->first()->first()->first(), n2.exit());
+    EXPECT_EQ(n.entry()->first()->first()->first(), n.exit());
 }
 
 TEST(NFA, OPERATOR_OR) {
@@ -30,27 +30,27 @@ TEST(NFA, OPERATOR_OR) {
     NFA n1(rule1), n2(rule2);
     NFA n = n1 | n2;
 
-    EXPECT_EQ(n.start()->first(), n1.start());
-    EXPECT_EQ(n.start()->second(), n2.start());
+    EXPECT_EQ(n.entry()->first(), n1.entry());
+    EXPECT_EQ(n.entry()->second(), n2.entry());
 
-    EXPECT_EQ(n.start()->rule(), NFAState::TR_EPSILON);
-    EXPECT_EQ(n.start()->first()->rule(), rule1);
-    EXPECT_EQ(n.start()->second()->rule(), rule2);
-    EXPECT_EQ(n.start()->first()->first()->rule(), NFAState::TR_EPSILON);
-    EXPECT_EQ(n.start()->second()->first()->rule(), NFAState::TR_EPSILON);
-    EXPECT_EQ(n.start()->first()->first()->first(), n.start()->second()->first()->first());
+    EXPECT_EQ(n.entry()->rule(), NFAState::TR_EPSILON);
+    EXPECT_EQ(n.entry()->first()->rule(), rule1);
+    EXPECT_EQ(n.entry()->second()->rule(), rule2);
+    EXPECT_EQ(n.entry()->first()->first()->rule(), NFAState::TR_EPSILON);
+    EXPECT_EQ(n.entry()->second()->first()->rule(), NFAState::TR_EPSILON);
+    EXPECT_EQ(n.entry()->first()->first()->first(), n.entry()->second()->first()->first());
 }
 
 TEST(NFA, OPERATOR_ASTERISK) {
     const char rule = 'a';
     NFA n(rule), n_star = *n;
 
-    EXPECT_EQ(n_star.start()->first(), n.start());
-    EXPECT_EQ(n_star.start()->first()->rule(), rule);
-    EXPECT_EQ(n_star.start()->first()->first(), n.end());
-    EXPECT_EQ(n_star.start()->first()->first()->rule(), NFAState::TR_EPSILON);
-    EXPECT_EQ(n_star.start()->first()->first()->first(), n_star.start());
-    EXPECT_EQ(n_star.start()->second(), n_star.end());
+    EXPECT_EQ(n_star.entry()->first(), n.entry());
+    EXPECT_EQ(n_star.entry()->first()->rule(), rule);
+    EXPECT_EQ(n_star.entry()->first()->first(), n.exit());
+    EXPECT_EQ(n_star.entry()->first()->first()->rule(), NFAState::TR_EPSILON);
+    EXPECT_EQ(n_star.entry()->first()->first()->first(), n_star.entry());
+    EXPECT_EQ(n_star.entry()->second(), n_star.exit());
 }
 
 TEST(NFA, SIZE) {
