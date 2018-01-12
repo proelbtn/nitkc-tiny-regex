@@ -8,5 +8,6 @@ namespace tiny_regex {
     typedef std::map<NFAStateRef, NFAStateRefSet> EpsilonTransitionTable;
 
     EpsilonTransitionTable nfa2ett(NFA nfa);
+    void nfa2dfa(NFA nfa);
 }
 

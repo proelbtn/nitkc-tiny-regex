@@ -12,6 +12,7 @@ namespace tiny_regex {
     typedef std::weak_ptr<NFAState> NFAStateWeakRef;
     typedef std::shared_ptr<NFAState> NFAStateRef;
     typedef std::set<NFAStateRef> NFAStateRefSet;
+    typedef std::shared_ptr<NFAStateRefSet> NFAStateRefSetRef;
 
     class NFAState {
     private:
