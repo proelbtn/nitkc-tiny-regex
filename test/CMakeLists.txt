@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-set(SRCS
-        test_nfa.cpp
-        test_nfastate.cpp
-        test_tiny_regex.cpp)
+set(SRCS)
 set(LIBS
         tiny_regex
         pthread
