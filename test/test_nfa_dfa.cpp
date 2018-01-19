@@ -1,5 +1,6 @@
-#include <nfa.h>
 #include <gtest/gtest.h>
+
+#include <nfa.h>
 
 TEST(NFAState, CONSTRUCTOR) {
     NFAState ns;
