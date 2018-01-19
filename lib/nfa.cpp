@@ -1,94 +1,87 @@
-#include <nfa.h>
-#include <set>
+#include "nfa.h"
+#include "dfa.h"
 #include <algorithm>
 #include <stack>
 
-const char NFAState::RULE_UNDEFINED = -1;
-const char NFAState::RULE_EPSILON = -2;
-const long NFAState::REFS_UNDEFINED = -1;
+const char NFA::RULE_UNDEFINED = -1;
+const char NFA::RULE_EPSILON = -2;
+const long NFA::REF_UNDEFINED = -1;
 
-NFAState::NFAState() {
-    this->rule = NFAState::RULE_UNDEFINED;
-    this->refs.first = -1;
-    this->refs.second = -1;
+NFASubsetRef::NFASubsetRef() : start(NFA::REF_UNDEFINED), end(NFA::REF_UNDEFINED) {};
+
+NFAState::NFAState() : rule(NFA::RULE_UNDEFINED), refs(NFA::REF_UNDEFINED, NFA::REF_UNDEFINED) {}
+
+NFA::NFA() : nfa_(), vec_(){}
+
+NFASubsetRef NFA::add_nfa(const char c) {
+    nfa_.start = vec_.size();
+    nfa_.end = nfa_.start + 1;
+
+    vec_.push_back(NFAState());
+    vec_.push_back(NFAState());
+
+    vec_[nfa_.start].rule = c;
+    vec_[nfa_.start].refs.first = nfa_.start;
+
+    return nfa_;
 }
 
-NFA NFAStatesVector::add_nfa(const char c) {
-    NFA nfa;
-    nfa.start = this->vec.size();
-    nfa.end = nfa.start + 1;
+NFASubsetRef NFA::link(const NFASubsetRef lv, const NFASubsetRef rv) {
+    nfa_.start = lv.start;
+    nfa_.end = rv.end;
 
-    this->vec.push_back(NFAState());
-    this->vec.push_back(NFAState());
+    vec_[nfa_.start].rule = NFA::RULE_EPSILON;
+    vec_[nfa_.start].refs.first = rv.start;
 
-    this->vec[nfa.start].rule = c;
-    this->vec[nfa.start].refs.first = nfa.start;
-
-    return nfa;
+    return nfa_;
 }
 
-NFA NFAStatesVector::link(const NFA lv, const NFA rv) {
-    NFA nfa;
+NFASubsetRef NFA::select(const NFASubsetRef lv, const NFASubsetRef rv) {
+    nfa_.start = vec_.size();
+    nfa_.end = nfa_.start + 1;
 
-    nfa.start = lv.start;
-    nfa.end = rv.end;
+    vec_.push_back(NFAState());
+    vec_.push_back(NFAState());
 
-    this->vec[nfa.start].rule = NFAState::RULE_EPSILON;
-    this->vec[nfa.start].refs.first = rv.start;
+    vec_[nfa_.start].rule = NFA::RULE_EPSILON;
+    vec_[nfa_.start].refs.first = lv.start;
+    vec_[nfa_.start].refs.second = rv.start;
 
-    return nfa;
+    vec_[lv.end].rule = NFA::RULE_EPSILON;
+    vec_[lv.end].refs.first = nfa_.end;
+
+    vec_[rv.end].rule = NFA::RULE_EPSILON;
+    vec_[rv.end].refs.first = nfa_.end;
+
+    return nfa_;
 }
 
-NFA NFAStatesVector::select(const NFA lv, const NFA rv) {
-    NFA nfa;
+NFASubsetRef NFA::star(const NFASubsetRef v) {
+    nfa_.start = vec_.size();
+    nfa_.end = nfa_.start + 1;
 
-    nfa.start = this->vec.size();
-    nfa.end = nfa.start + 1;
+    vec_.push_back(NFAState());
+    vec_.push_back(NFAState());
 
-    this->vec.push_back(NFAState());
-    this->vec.push_back(NFAState());
+    vec_[nfa_.start].rule = NFA::RULE_EPSILON;
+    vec_[nfa_.start].refs.first = v.start;
+    vec_[nfa_.start].refs.second = nfa_.end;
 
-    this->vec[nfa.start].rule = NFAState::RULE_EPSILON;
-    this->vec[nfa.start].refs.first = lv.start;
-    this->vec[nfa.start].refs.second = rv.start;
+    vec_[v.end].rule = NFA::RULE_EPSILON;
+    vec_[v.end].refs.first = nfa_.start;
 
-    this->vec[lv.end].rule = NFAState::RULE_EPSILON;
-    this->vec[lv.end].refs.first = nfa.end;
-
-    this->vec[rv.end].rule = NFAState::RULE_EPSILON;
-    this->vec[rv.end].refs.first = nfa.end;
-
-    return nfa;
-}
-
-NFA NFAStatesVector::star(const NFA v) {
-    NFA nfa;
-
-    nfa.start = this->vec.size();
-    nfa.end = nfa.start + 1;
-
-    this->vec.push_back(NFAState());
-    this->vec.push_back(NFAState());
-
-    this->vec[nfa.start].rule = NFAState::RULE_EPSILON;
-    this->vec[nfa.start].refs.first = v.start;
-    this->vec[nfa.start].refs.second = nfa.end;
-
-    this->vec[v.end].rule = NFAState::RULE_EPSILON;
-    this->vec[v.end].refs.first = nfa.start;
-
-    return nfa;
+    return nfa_;
 }
 
 void calculate_epsilon_closure(const std::vector<NFAState> &nss, std::vector<std::set<long>> &ecs, std::vector<bool> &flag, long i) {
     if(flag[i]) return;
-    if(nss[i].rule == NFAState::RULE_EPSILON) {
+    if(nss[i].rule == NFA::RULE_EPSILON) {
         long s1 = nss[i].refs.first, s2 = nss[i].refs.second;
-        if(s1 != NFAState::REFS_UNDEFINED) {
+        if(s1 != NFA::REF_UNDEFINED) {
             calculate_epsilon_closure(nss, ecs, flag, s1);
             ecs[i].insert(ecs[s1].begin(), ecs[s1].end());
         }
-        if(s2 != NFAState::REFS_UNDEFINED) {
+        if(s2 != NFA::REF_UNDEFINED) {
             calculate_epsilon_closure(nss, ecs, flag, s2);
             ecs[i].insert(ecs[s2].begin(), ecs[s2].end());
         }
@@ -105,8 +98,10 @@ void calculate_epsilon_closures(const std::vector<NFAState> &nss, std::vector<st
 
 }
 
-void NFAStatesVector::nfa2dfa(const NFA v) {
-    std::vector<std::set<long>> epsilon_closures(this->vec.size());
+DFA NFA::nfa2dfa() {
+    std::vector<std::set<long>> epsilon_closures(vec_.size());
 
-    calculate_epsilon_closures(this->vec, epsilon_closures);
+    calculate_epsilon_closures(vec_, epsilon_closures);
+
+
 }

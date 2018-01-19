@@ -4,33 +4,38 @@
 #include <vector>
 #include <utility>
 
-struct NFA {
+#include "dfa.h"
+
+struct NFASubsetRef {
     long start;
     long end;
+
+    NFASubsetRef();
 };
 
 struct NFAState {
-    static const char RULE_UNDEFINED;
-    static const char RULE_EPSILON;
-    static const long REFS_UNDEFINED;
-
     char rule;
-    struct {
-        long first;
-        long second;
-    } refs;
+    std::pair<long, long> refs;
 
     NFAState();
 };
 
-struct NFAStatesVector {
-    std::vector<NFAState> vec;
+class NFA {
+    NFASubsetRef nfa_;
+    std::vector<NFAState> vec_;
 
-    NFA add_nfa(const char c);
+public:
+    static const char RULE_UNDEFINED;
+    static const char RULE_EPSILON;
+    static const long REF_UNDEFINED;
 
-    NFA link(const NFA lv, const NFA rv);
-    NFA select(const NFA lv, const NFA rv);
-    NFA star(const NFA v);
+    NFA();
 
-    void nfa2dfa(const NFA v);
+    NFASubsetRef add_nfa(const char c);
+
+    NFASubsetRef link(const NFASubsetRef lv, const NFASubsetRef rv);
+    NFASubsetRef select(const NFASubsetRef lv, const NFASubsetRef rv);
+    NFASubsetRef star(const NFASubsetRef v);
+
+    DFA nfa2dfa();
 };
