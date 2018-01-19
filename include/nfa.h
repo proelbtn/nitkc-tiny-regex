@@ -20,22 +20,22 @@ struct NFAState {
     NFAState();
 };
 
-class NFA {
-    NFASubsetRef nfa_;
-    std::vector<NFAState> vec_;
+struct NFA {
+    NFASubsetRef nfa;
+    std::vector<NFAState> vec;
 
-public:
     static const char RULE_UNDEFINED;
     static const char RULE_EPSILON;
     static const long REF_UNDEFINED;
 
     NFA();
 
-    NFASubsetRef add_nfa(const char c);
-
+    NFASubsetRef ch(const char c);
     NFASubsetRef link(const NFASubsetRef lv, const NFASubsetRef rv);
     NFASubsetRef select(const NFASubsetRef lv, const NFASubsetRef rv);
     NFASubsetRef star(const NFASubsetRef v);
+
+    const NFAState& operator[](unsigned long i) const;
 
     DFA nfa2dfa();
 };

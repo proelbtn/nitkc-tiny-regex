@@ -1,6 +1,13 @@
 #pragma once
 
-#include <set>
 #include <map>
+#include <vector>
 
-typedef char DFA;
+struct DFAState {
+    bool is_end;
+    std::map<char, long> refs;
+
+    DFAState();
+};
+
+typedef std::vector<DFAState> DFA;
