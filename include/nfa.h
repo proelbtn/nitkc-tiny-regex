@@ -27,8 +27,10 @@ struct NFAStatesVector {
     std::vector<NFAState> vec;
 
     NFA add_nfa(const char c);
+
     NFA link(const NFA lv, const NFA rv);
     NFA select(const NFA lv, const NFA rv);
     NFA star(const NFA v);
-};
 
+    void nfa2dfa(const NFA v);
+};
