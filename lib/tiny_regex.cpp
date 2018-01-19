@@ -3,25 +3,50 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "nfa.h"
 #include <dfa.h>
 #include <tiny_regex.h>
 
-NFA str2nfa(std::string str) {
-    NFA nfa;
+NFASubsetRef str2nfa(NFA& nfa, std::string str) {
+    auto it = str.cbegin();
+    NFASubsetRef ns;
 
-    // とりあえず"a(a|b)*a"のNFAを構築するようにしておく。
-    nfa.link(nfa.ch('a'), nfa.link(nfa.star(nfa.select(nfa.ch('a'), nfa.ch('b'))), nfa.ch('a')));
+    if(*it != '(') {
+        if(*it == '\\') it++;
+        ns = nfa.ch(*it);
+        it++;
+    }
+    else {
+        auto start = ++it;
+        while(*it != ')') {
+            if(*it == '\\') it++;
+            it++;
+        }
 
-    return nfa;
+        ns = str2nfa(nfa, std::string(start, it));
+        it++;
+    }
+    if(*it == '*') {
+        ns = nfa.star(ns);
+        it++;
+    }
+
+    if(it == str.cend()) return ns;
+    else if(*it == '|') return nfa.select(ns, str2nfa(nfa, std::string(it + 1, str.cend())));
+    return nfa.link(ns, str2nfa(nfa, std::string(it, str.cend())));
 }
 
 DFA str2dfa(std::string str) {
+    NFA nfa;
+
     if(str[0] == '^') str = str.substr(1);
     if(str[str.size() - 1] == '$') str = str.substr(0, str.size() - 1);
 
-    return str2nfa(str).nfa2dfa();
+    str2nfa(nfa, str);
+
+    return nfa.nfa2dfa();
 }
 
 TinyRegex::TinyRegex(std::string regex) : dfa(str2dfa(regex)), flags({false, false}) {
@@ -47,4 +72,18 @@ bool TinyRegex::test(const std::string &txt) const {
         start++;
     }
     return false;
+}
+
+std::string TinyRegex::dump() const {
+    std::stringstream ss;
+
+    ss << "digraph G { 0";
+    for(size_t i = 0; i < dfa.size(); i++) if(dfa[i].is_end) ss << ", " << i;
+    ss << " [shape=square]; 0 [shape=doublecircle]; node [shape=circle]; ";
+    for(size_t i = 0; i < dfa.size(); i++)
+        for(auto it = dfa[i].refs.cbegin(); it != dfa[i].refs.cend(); it++)
+            ss << i << " -> " << it->second << " [label=\"" << it->first << "\"]; ";
+    ss << "}";
+
+    return ss.str();
 }

@@ -15,4 +15,5 @@ public:
     TinyRegex(std::string regex);
 
     bool test(const std::string &txt) const;
+    std::string dump() const;
 };
