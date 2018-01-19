@@ -82,6 +82,25 @@ NFASubsetRef NFA::star(const NFASubsetRef v) {
     return nfa;
 }
 
+NFASubsetRef NFA::qestion(const NFASubsetRef v) {
+    nfa.start = vec.size();
+    nfa.end = v.end;
+
+    vec.push_back(NFAState());
+
+    vec[nfa.start].rule = NFA::RULE_EPSILON;
+    vec[nfa.start].refs.first = v.start;
+    vec[nfa.start].refs.second = v.end;
+}
+
+NFASubsetRef NFA::range(const char s, const char e) {
+    if(s > e) return NFASubsetRef();
+    if(s == e) return ch(s);
+    NFASubsetRef ns = ch(s);
+    for(char c = s + 1; c <= e; c++) ns = select(ns, ch(c));
+    return ns;
+}
+
 const NFAState& NFA::operator[](unsigned long i) const {
     return (const NFAState &)vec[i];
 }

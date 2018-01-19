@@ -34,6 +34,8 @@ struct NFA {
     NFASubsetRef link(const NFASubsetRef lv, const NFASubsetRef rv);
     NFASubsetRef select(const NFASubsetRef lv, const NFASubsetRef rv);
     NFASubsetRef star(const NFASubsetRef v);
+    NFASubsetRef qestion(const NFASubsetRef v);
+    NFASubsetRef range(const char s, const char e);
 
     const NFAState& operator[](unsigned long i) const;
 

@@ -54,6 +54,8 @@ TinyRegex::TinyRegex(std::string regex) : dfa(str2dfa(regex)), flags({false, fal
     flags.last = regex[regex.size() - 1] == '$';
 }
 
+TinyRegex::TinyRegex(NFA nfa, bool first, bool last) : dfa(nfa.nfa2dfa()), flags({first, last}){}
+
 bool TinyRegex::test(const std::string &txt) const {
     long pos = 0;
     std::string::const_iterator start = txt.cbegin();

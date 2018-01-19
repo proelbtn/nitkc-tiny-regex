@@ -2,12 +2,16 @@
 
 #include <regex>
 #include <tiny_regex.h>
+#include <nfa.h>
+#include <fstream>
 
 #define REGEX_MATCH_CHECK(re, cre, str) EXPECT_EQ(re.test(str), std::regex_search(str, cre));
 
 
 TEST(TinyRegex, Test01) {
-    TinyRegex re("a(a|b)*a");
+    NFA nfa;
+    nfa.link(nfa.ch('a'), nfa.link(nfa.star(nfa.select(nfa.ch('a'), nfa.ch('b'))), nfa.ch('a')));
+    TinyRegex re(nfa, false, false);
     std::regex cre("a(a|b)*a");
 
     REGEX_MATCH_CHECK(re, cre, "");
@@ -44,7 +48,9 @@ TEST(TinyRegex, Test01) {
 }
 
 TEST(TinyRegex, Test02) {
-    TinyRegex re("^a(a|b)*a");
+    NFA nfa;
+    nfa.link(nfa.ch('a'), nfa.link(nfa.star(nfa.select(nfa.ch('a'), nfa.ch('b'))), nfa.ch('a')));
+    TinyRegex re(nfa, true, false);
     std::regex cre("^a(a|b)*a");
 
     REGEX_MATCH_CHECK(re, cre, "");
@@ -81,7 +87,9 @@ TEST(TinyRegex, Test02) {
 }
 
 TEST(TinyRegex, Test03) {
-    TinyRegex re("a(a|b)*a$");
+    NFA nfa;
+    nfa.link(nfa.ch('a'), nfa.link(nfa.star(nfa.select(nfa.ch('a'), nfa.ch('b'))), nfa.ch('a')));
+    TinyRegex re(nfa, false, true);
     std::regex cre("a(a|b)*a$");
 
     REGEX_MATCH_CHECK(re, cre, "");
@@ -118,7 +126,9 @@ TEST(TinyRegex, Test03) {
 }
 
 TEST(TinyRegex, Test04) {
-    TinyRegex re("^a(a|b)*a$");
+    NFA nfa;
+    nfa.link(nfa.ch('a'), nfa.link(nfa.star(nfa.select(nfa.ch('a'), nfa.ch('b'))), nfa.ch('a')));
+    TinyRegex re(nfa, true, true);
     std::regex cre("^a(a|b)*a$");
 
     REGEX_MATCH_CHECK(re, cre, "");
@@ -152,4 +162,42 @@ TEST(TinyRegex, Test04) {
     REGEX_MATCH_CHECK(re, cre, "babb");
     REGEX_MATCH_CHECK(re, cre, "abbb");
     REGEX_MATCH_CHECK(re, cre, "bbbb");
+}
+
+TEST(TinyRegex, Test05) {
+    NFA nfa;
+    nfa.range('0', '9');
+    TinyRegex re(nfa, true, true);
+    std::regex cre("^[0-9]$");
+    REGEX_MATCH_CHECK(re, cre, "");
+    REGEX_MATCH_CHECK(re, cre, "0");
+    REGEX_MATCH_CHECK(re, cre, "1");
+    REGEX_MATCH_CHECK(re, cre, "2");
+    REGEX_MATCH_CHECK(re, cre, "3");
+    REGEX_MATCH_CHECK(re, cre, "4");
+    REGEX_MATCH_CHECK(re, cre, "5");
+    REGEX_MATCH_CHECK(re, cre, "6");
+    REGEX_MATCH_CHECK(re, cre, "7");
+    REGEX_MATCH_CHECK(re, cre, "8");
+    REGEX_MATCH_CHECK(re, cre, "9");
+    REGEX_MATCH_CHECK(re, cre, "a");
+}
+
+TEST(TinyRegex, Test06) {
+    NFA nfa;
+    nfa.star(nfa.range('0', '9'));
+    TinyRegex re(nfa, true, true);
+    std::regex cre("^[0-9]*$");
+
+    REGEX_MATCH_CHECK(re, cre, "0000");
+    REGEX_MATCH_CHECK(re, cre, "1111");
+    REGEX_MATCH_CHECK(re, cre, "2222");
+    REGEX_MATCH_CHECK(re, cre, "3333");
+    REGEX_MATCH_CHECK(re, cre, "....");
+    REGEX_MATCH_CHECK(re, cre, "5555");
+    REGEX_MATCH_CHECK(re, cre, "????");
+    REGEX_MATCH_CHECK(re, cre, "6666");
+    REGEX_MATCH_CHECK(re, cre, "77777");
+    REGEX_MATCH_CHECK(re, cre, "888");
+    REGEX_MATCH_CHECK(re, cre, "9999");
 }
