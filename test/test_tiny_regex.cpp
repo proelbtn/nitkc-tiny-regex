@@ -166,9 +166,9 @@ TEST(TinyRegex, Test04) {
 
 TEST(TinyRegex, Test05) {
     NFA nfa;
-    nfa.range('0', '9');
+    nfa.digit();
     TinyRegex re(nfa, true, true);
-    std::regex cre("^[0-9]$");
+    std::regex cre("^[\\d]$");
     REGEX_MATCH_CHECK(re, cre, "");
     REGEX_MATCH_CHECK(re, cre, "0");
     REGEX_MATCH_CHECK(re, cre, "1");
@@ -185,9 +185,9 @@ TEST(TinyRegex, Test05) {
 
 TEST(TinyRegex, Test06) {
     NFA nfa;
-    nfa.star(nfa.range('0', '9'));
+    nfa.star(nfa.digit());
     TinyRegex re(nfa, true, true);
-    std::regex cre("^[0-9]*$");
+    std::regex cre("^[\\d]*$");
 
     REGEX_MATCH_CHECK(re, cre, "0000");
     REGEX_MATCH_CHECK(re, cre, "1111");

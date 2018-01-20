@@ -101,6 +101,53 @@ NFASubsetRef NFA::range(const char s, const char e) {
     return ns;
 }
 
+NFASubsetRef NFA::one_of(const char *list) {
+    if(*list == '\0') return NFASubsetRef();
+    NFASubsetRef ns = ch(*list);
+    for(const char *p = list + 1; *p != '\0'; p++) ns = select(ns, ch(*p));
+    return ns;
+}
+
+NFASubsetRef NFA::alnum() {
+    return select(alpha(), digit());
+}
+
+NFASubsetRef NFA::alpha() {
+    return select(lower(), upper());
+}
+
+NFASubsetRef NFA::blank() {
+    return one_of(" \t");
+}
+
+NFASubsetRef NFA::digit() {
+    return one_of("0123456789");
+}
+
+NFASubsetRef NFA::graph() {
+    return select(alnum(), punct());
+}
+
+NFASubsetRef NFA::lower() {
+    return one_of("abcdefghijklmnopqrstuvwxyz");
+}
+
+NFASubsetRef NFA::print() {
+    return select(graph(), ch(' '));
+}
+
+NFASubsetRef NFA::punct() {
+    return one_of("!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}");
+}
+
+NFASubsetRef NFA::upper() {
+    return one_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+}
+
+NFASubsetRef NFA::xdigit() {
+    return select(digit(), one_of("ABCDEFabcdef"));
+}
+
 const NFAState& NFA::operator[](unsigned long i) const {
     return (const NFAState &)vec[i];
 }
