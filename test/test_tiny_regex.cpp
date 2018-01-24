@@ -4,6 +4,7 @@
 #include <tiny_regex.h>
 #include <nfa.h>
 #include <fstream>
+#include <chrono>
 
 #define REGEX_MATCH_CHECK(re, cre, str) EXPECT_EQ(re.test(str), std::regex_search(str, cre));
 

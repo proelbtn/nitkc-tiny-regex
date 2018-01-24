@@ -152,30 +152,41 @@ const NFAState& NFA::operator[](unsigned long i) const {
     return (const NFAState &)vec[i];
 }
 
-void calculate_epsilon_closure(const std::vector<NFAState> &nss, std::vector<std::set<long>> &ecs, std::vector<bool> &flag, long i) {
-    if(flag[i]) return;
-    if(nss[i].rule == NFA::RULE_EPSILON) {
-        long s1 = nss[i].refs.first, s2 = nss[i].refs.second;
-
-        if(s1 != NFA::REF_UNDEFINED) {
-            calculate_epsilon_closure(nss, ecs, flag, s1);
-            ecs[i].insert(ecs[s1].begin(), ecs[s1].end());
-        }
-        if(s2 != NFA::REF_UNDEFINED) {
-            calculate_epsilon_closure(nss, ecs, flag, s2);
-            ecs[i].insert(ecs[s2].begin(), ecs[s2].end());
-        }
-    }
-
-    flag[i] = true;
-    ecs[i].insert(i);
-}
-
 void calculate_epsilon_closures(const std::vector<NFAState> &nss, std::vector<std::set<long>> &ecs) {
     std::vector<bool> flag(nss.size(), false);
 
-    for(long i = 0; i < nss.size(); i++) calculate_epsilon_closure(nss, ecs, flag, i);
+    for(long i = 0; i < nss.size(); i++) {
+        std::stack<long> stack;
+        stack.push(i);
 
+        while(!stack.empty()) {
+            if(ecs.size() < stack.size()) throw "An epsilon infinite loop is detected.";
+            long argi = stack.top();
+
+            if(nss[argi].rule == NFA::RULE_EPSILON) {
+                long s1 = nss[argi].refs.first, s2 = nss[argi].refs.second;
+
+                if(s1 != NFA::REF_UNDEFINED) {
+                    if(!flag[s1]) {
+                        stack.push(s1);
+                        continue;
+                    }
+                    else ecs[argi].insert(ecs[s1].begin(), ecs[s1].end());
+                }
+                if(s2 != NFA::REF_UNDEFINED) {
+                    if(!flag[s2]) {
+                        stack.push(s2);
+                        continue;
+                    }
+                    else ecs[argi].insert(ecs[s2].begin(), ecs[s2].end());
+                }
+            }
+
+            flag[argi] = true;
+            ecs[argi].insert(argi);
+            stack.pop();
+        }
+    }
 }
 
 DFA NFA::nfa2dfa() {
