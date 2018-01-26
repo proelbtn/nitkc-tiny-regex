@@ -195,7 +195,6 @@ DFA NFA::nfa2dfa() {
     std::vector<DFARefRecord> dfa_ref_records;
 
     // at first, calculate dfa tree
-
     calculate_epsilon_closures(vec, epsilon_closures);
 
     dfa_states.push_back(epsilon_closures[nfa.start]);

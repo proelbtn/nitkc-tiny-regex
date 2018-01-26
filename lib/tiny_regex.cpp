@@ -9,7 +9,60 @@
 #include <dfa.h>
 #include <tiny_regex.h>
 
-NFA str2nfa(NFA &nfa, std::string str) {
+NFASubsetRef term(NFA &nfa, std::string::const_iterator &it);
+NFASubsetRef str2nfa(NFA &nfa, std::string str);
+
+NFASubsetRef term(NFA &nfa, std::string::const_iterator &it) {
+    NFASubsetRef ns;
+
+    if(*it == '(') {
+        int i = 1;
+        std::string::const_iterator sit = it + 1;
+        while(i != 0) {
+            it++;
+            if(*it == '(') i++;
+            else if (*it == ')') i--;
+        }
+        ns = str2nfa(nfa, std::string(sit, it));
+    }
+    else ns = nfa.ch(*it);
+
+    it++;
+
+    return ns;
+}
+
+NFASubsetRef str2nfa(NFA &nfa, std::string str) {
+    NFASubsetRef ns;
+    std::string::const_iterator it = str.cbegin();
+
+    ns = term(nfa, it);
+    if(*it == '*') {
+        ns = nfa.star(ns);
+        it++;
+    }
+
+    while(it != str.cend()) {
+        NFASubsetRef tns;
+        bool s_flag = false;
+
+        if (*it == '|') {
+            s_flag = true;
+            it++;
+        }
+
+        tns = term(nfa, it);
+        if(*it == '*') {
+            tns = nfa.star(tns);
+            it++;
+        }
+
+        if(s_flag) ns = nfa.select(ns, tns);
+        else ns = nfa.link(ns, tns);
+    }
+
+    return ns;
+
 }
 
 DFA str2dfa(std::string str) {
