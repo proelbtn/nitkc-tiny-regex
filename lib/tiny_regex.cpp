@@ -9,38 +9,11 @@
 #include <dfa.h>
 #include <tiny_regex.h>
 
-NFASubsetRef str2nfa(NFA& nfa, std::string str) {
-    auto it = str.cbegin();
-    NFASubsetRef ns;
-
-    if(*it != '(') {
-        if(*it == '\\') it++;
-        ns = nfa.ch(*it);
-        it++;
-    }
-    else {
-        auto start = ++it;
-        while(*it != ')') {
-            if(*it == '\\') it++;
-            it++;
-        }
-
-        ns = str2nfa(nfa, std::string(start, it));
-        it++;
-    }
-    if(*it == '*') {
-        ns = nfa.star(ns);
-        it++;
-    }
-
-    if(it == str.cend()) return ns;
-    else if(*it == '|') return nfa.select(ns, str2nfa(nfa, std::string(it + 1, str.cend())));
-    return nfa.link(ns, str2nfa(nfa, std::string(it, str.cend())));
+NFA str2nfa(NFA &nfa, std::string str) {
 }
 
 DFA str2dfa(std::string str) {
     NFA nfa;
-
     if(str[0] == '^') str = str.substr(1);
     if(str[str.size() - 1] == '$') str = str.substr(0, str.size() - 1);
 
