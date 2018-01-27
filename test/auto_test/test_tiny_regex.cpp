@@ -93,3 +93,9 @@ TEST(TinyRegex, Test06) {
     REGEX_MATCH_CHECK(re, cre, "a");
     REGEX_MATCH_CHECK(re, cre, "aa");
 }
+
+TEST(TinyRegex, Test07) {
+    NFA nfa;
+    TinyRegex re("今日はいい天気ですね。");
+    std::regex cre("今日はいい天気ですね。");
+}

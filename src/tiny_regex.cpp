@@ -1,3 +1,8 @@
+/*!
+ * @file tiny_regex.cpp
+ * @brief TinyRegexクラスの実装
+ */
+
 #include "tiny_regex.h"
 
 #include <algorithm>

@@ -1,19 +1,40 @@
+/*!
+ * @file nfa.cpp
+ * @brief NFA構造体のメソッドの実装
+ */
+
 #include "nfa.h"
 #include "dfa.h"
 #include <algorithm>
 #include <stack>
-#include <iostream>
 #include <set>
 #include <map>
 
+/**
+ * NFAからDFAへ変更する際に用いられる構造体。
+ */
 struct DFARefRecord {
-    long from;
-    char rule;
-    long to;
+    //! 遷移元のNFAの状態の集合のインデックス
+    long from = NFA::REF_UNDEFINED;
+    //! 遷移条件
+    char rule = NFA::RULE_UNDEFINED;
+    //! 遷移元のNFAの状態の集合のインデックス
+    long to = NFA::REF_UNDEFINED;
 };
 
+/**
+ * NFAの状態遷移の規則がまだ定義されていない状態を表す定数
+ */
 const char NFA::RULE_UNDEFINED = -1;
+
+/**
+ * ε遷移の規則を表す定数
+ */
 const char NFA::RULE_EPSILON = -2;
+
+/**
+ * 遷移先がまだ定義されていない状態を表す定数
+ */
 const long NFA::REF_UNDEFINED = -1;
 
 NFASubsetRef::NFASubsetRef() : start(NFA::REF_UNDEFINED), end(NFA::REF_UNDEFINED) {};
@@ -152,6 +173,15 @@ const NFAState& NFA::operator[](unsigned long i) const {
     return (const NFAState &)vec[i];
 }
 
+/**
+ * ある状態のε閉包を求める関数。
+ * 授業では、逐次ε閉包を求めているが、ε閉包は先に計算しておくことも可能なうえに、
+ * そのようにしたほうが計算量を抑えることができる。
+ * また、今回の実装では動的bitsetを自作するのが面倒で行っていないが、
+ * 集合の管理をbitsetで行うと更に高速にDFAを求めることが可能だと考える。
+ * @param nss NFAの状態一覧の参照
+ * @param ecs NFAの状態に対応したε閉包一覧の参照
+ */
 void calculate_epsilon_closures(const std::vector<NFAState> &nss, std::vector<std::set<long>> &ecs) {
     std::vector<bool> flag(nss.size(), false);
 
@@ -190,23 +220,27 @@ void calculate_epsilon_closures(const std::vector<NFAState> &nss, std::vector<st
 }
 
 DFA NFA::nfa2dfa() {
-    std::vector<std::set<long>> epsilon_closures(vec.size());
-    std::vector<std::set<long>> dfa_states;
-    std::vector<DFARefRecord> dfa_ref_records;
+    std::vector<std::set<long>> epsilon_closures(vec.size()); // ε-closure Table
+    std::vector<std::set<long>> dfa_states; // DFAState Table
+    std::vector<DFARefRecord> dfa_ref_records; // DFAState Transition Table
 
     // at first, calculate dfa tree
+
     calculate_epsilon_closures(vec, epsilon_closures);
 
+    // for all dfa_states...
     dfa_states.push_back(epsilon_closures[nfa.start]);
     for(long dsi = 0; dsi < dfa_states.size(); dsi++) {
         std::map<char, std::set<long>> ch_closures;
 
+        // calculate the set of NFAState which it able to go from dsi with an character.
         std::for_each(dfa_states[dsi].begin(), dfa_states[dsi].end(), [&](long si) {
             if(vec[si].rule == NFA::RULE_EPSILON || vec[si].rule == NFA::RULE_UNDEFINED) return;
 
             ch_closures[vec[si].rule].insert(epsilon_closures[vec[si].refs.first].begin(), epsilon_closures[vec[si].refs.first].end());
         });
 
+        // indexes the set of NFAState, add the record to dfa_ref_records.
         std::for_each(ch_closures.begin(), ch_closures.end(), [&](std::pair<char, std::set<long>> cs) {
             long from = dsi, to;
             char rule = cs.first;
@@ -221,6 +255,7 @@ DFA NFA::nfa2dfa() {
     }
 
     // second, construct the structure meaning dfa tree
+
     DFA dfa(dfa_states.size());
     for(size_t i = 0; i < dfa.size(); i++) dfa[i].is_end = dfa_states[i].find(nfa.end) != dfa_states[i].end();
     std::for_each(dfa_ref_records.begin(), dfa_ref_records.end(), [&](const DFARefRecord &rec) {

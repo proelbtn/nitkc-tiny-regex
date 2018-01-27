@@ -1,0 +1,708 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinyRegex: NFA 構造体</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinyRegex
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An Tiny Regex Engine.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-attribs">公開変数類</a> &#124;
+<a href="#pub-static-attribs">静的公開変数類</a> &#124;
+<a href="structNFA-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">NFA 構造体</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="nfa_8h_source.html">nfa.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a6a4e79c90998ebb75e7b6ce280b14bed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a6a4e79c90998ebb75e7b6ce280b14bed">NFA</a> ()</td></tr>
+<tr class="separator:a6a4e79c90998ebb75e7b6ce280b14bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5189afdc235b4b103c0956046278dbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#aa5189afdc235b4b103c0956046278dbd">ch</a> (const char c)</td></tr>
+<tr class="separator:aa5189afdc235b4b103c0956046278dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac6e8747ba4510803b356d699cd2ee94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#aac6e8747ba4510803b356d699cd2ee94">link</a> (const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> lv, const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> rv)</td></tr>
+<tr class="separator:aac6e8747ba4510803b356d699cd2ee94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2cee15a7b6a6083cc928ac0d2ee9be3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#aa2cee15a7b6a6083cc928ac0d2ee9be3">select</a> (const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> lv, const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> rv)</td></tr>
+<tr class="separator:aa2cee15a7b6a6083cc928ac0d2ee9be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6818c9926ab49d9f335936e26a46631"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#af6818c9926ab49d9f335936e26a46631">star</a> (const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> v)</td></tr>
+<tr class="separator:af6818c9926ab49d9f335936e26a46631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aa1e4a8cf2694d26c19d894c92f1aa9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a4aa1e4a8cf2694d26c19d894c92f1aa9">question</a> (const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> v)</td></tr>
+<tr class="separator:a4aa1e4a8cf2694d26c19d894c92f1aa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac601c1d5efd5d7fec117a7bb226bf90c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#ac601c1d5efd5d7fec117a7bb226bf90c">range</a> (const char s, const char e)</td></tr>
+<tr class="separator:ac601c1d5efd5d7fec117a7bb226bf90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78e271faa9e585280a4d0a7baa9fb7f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a78e271faa9e585280a4d0a7baa9fb7f2">one_of</a> (const char *list)</td></tr>
+<tr class="separator:a78e271faa9e585280a4d0a7baa9fb7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41f00648e9977e61c06f20b5fe655b8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a41f00648e9977e61c06f20b5fe655b8d">alnum</a> ()</td></tr>
+<tr class="separator:a41f00648e9977e61c06f20b5fe655b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af492d7d1ac7d2737cda53cf1891a391d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#af492d7d1ac7d2737cda53cf1891a391d">alpha</a> ()</td></tr>
+<tr class="separator:af492d7d1ac7d2737cda53cf1891a391d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42cc69e0d171d720b118c41d61cd40b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a42cc69e0d171d720b118c41d61cd40b4">blank</a> ()</td></tr>
+<tr class="separator:a42cc69e0d171d720b118c41d61cd40b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ad4b311d4356d61b9007198bc29d94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a88ad4b311d4356d61b9007198bc29d94">digit</a> ()</td></tr>
+<tr class="separator:a88ad4b311d4356d61b9007198bc29d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9109ab2c50be2609d86cc121e7eab2ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a9109ab2c50be2609d86cc121e7eab2ea">graph</a> ()</td></tr>
+<tr class="separator:a9109ab2c50be2609d86cc121e7eab2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49bed9b458e59479ca9e7eaa42ebfd82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a49bed9b458e59479ca9e7eaa42ebfd82">lower</a> ()</td></tr>
+<tr class="separator:a49bed9b458e59479ca9e7eaa42ebfd82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11abeffdbfbd9c98c95e6ba572a0fcef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a11abeffdbfbd9c98c95e6ba572a0fcef">print</a> ()</td></tr>
+<tr class="separator:a11abeffdbfbd9c98c95e6ba572a0fcef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa985ce753cdb4528fd9cde7934b998"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a5fa985ce753cdb4528fd9cde7934b998">punct</a> ()</td></tr>
+<tr class="separator:a5fa985ce753cdb4528fd9cde7934b998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5d063783d3bb79b13f6f133a6956997"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#ae5d063783d3bb79b13f6f133a6956997">upper</a> ()</td></tr>
+<tr class="separator:ae5d063783d3bb79b13f6f133a6956997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe2daad1fbe63d190da8e74fc20097c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#abe2daad1fbe63d190da8e74fc20097c9">xdigit</a> ()</td></tr>
+<tr class="separator:abe2daad1fbe63d190da8e74fc20097c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a91d5c41c7a20060962fcf01238798e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structNFAState.html">NFAState</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a2a91d5c41c7a20060962fcf01238798e">operator[]</a> (unsigned long i) const</td></tr>
+<tr class="separator:a2a91d5c41c7a20060962fcf01238798e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b70e9276d4fb57d16b126763cf80ad2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfa_8h.html#a256017fdca54a982bc9b5fb221f41c03">DFA</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a0b70e9276d4fb57d16b126763cf80ad2">nfa2dfa</a> ()</td></tr>
+<tr class="separator:a0b70e9276d4fb57d16b126763cf80ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+公開変数類</h2></td></tr>
+<tr class="memitem:a25adeee2749e950ba161d83421ce3008"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a></td></tr>
+<tr class="memdesc:a25adeee2749e950ba161d83421ce3008"><td class="mdescLeft">&#160;</td><td class="mdescRight">もっとも最後に作成された正規表現を指し示すポインタ  <a href="#a25adeee2749e950ba161d83421ce3008">[詳解]</a><br /></td></tr>
+<tr class="separator:a25adeee2749e950ba161d83421ce3008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b78e42a37902fc6103edbd72fb3e9c3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structNFAState.html">NFAState</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a8b78e42a37902fc6103edbd72fb3e9c3">vec</a></td></tr>
+<tr class="memdesc:a8b78e42a37902fc6103edbd72fb3e9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">NFAの状態を保持している動的配列  <a href="#a8b78e42a37902fc6103edbd72fb3e9c3">[詳解]</a><br /></td></tr>
+<tr class="separator:a8b78e42a37902fc6103edbd72fb3e9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+静的公開変数類</h2></td></tr>
+<tr class="memitem:a301adee5ffe0755b800a17fcafff0fd5"><td class="memItemLeft" align="right" valign="top">static const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a301adee5ffe0755b800a17fcafff0fd5">RULE_UNDEFINED</a> = -1</td></tr>
+<tr class="separator:a301adee5ffe0755b800a17fcafff0fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80b97c818f23ddb4af5bd97b165567b1"><td class="memItemLeft" align="right" valign="top">static const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a80b97c818f23ddb4af5bd97b165567b1">RULE_EPSILON</a> = -2</td></tr>
+<tr class="separator:a80b97c818f23ddb4af5bd97b165567b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f7f460cfa743a8c3b03b4de069b4707"><td class="memItemLeft" align="right" valign="top">static const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNFA.html#a3f7f460cfa743a8c3b03b4de069b4707">REF_UNDEFINED</a> = -1</td></tr>
+<tr class="separator:a3f7f460cfa743a8c3b03b4de069b4707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a6a4e79c90998ebb75e7b6ce280b14bed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a4e79c90998ebb75e7b6ce280b14bed">&#9670;&nbsp;</a></span>NFA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NFA::NFA </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a41f00648e9977e61c06f20b5fe655b8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41f00648e9977e61c06f20b5fe655b8d">&#9670;&nbsp;</a></span>alnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::alnum </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>アルファベットか数字にヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>アルファベットか数字にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="af492d7d1ac7d2737cda53cf1891a391d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af492d7d1ac7d2737cda53cf1891a391d">&#9670;&nbsp;</a></span>alpha()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::alpha </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>アルファベットにヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>アルファベットにヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="a42cc69e0d171d720b118c41d61cd40b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42cc69e0d171d720b118c41d61cd40b4">&#9670;&nbsp;</a></span>blank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::blank </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>スペースかタブ文字にヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>スペースかタブ文字にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="aa5189afdc235b4b103c0956046278dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5189afdc235b4b103c0956046278dbd">&#9670;&nbsp;</a></span>ch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::ch </td>
+          <td>(</td>
+          <td class="paramtype">const char&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>cという正規表現をNFAに追加する。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>マッチさせる文字 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>cという正規表現を指し示すポインタ</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="structNFA.html">NFA</a> <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>;</div><div class="line"></div><div class="line"><span class="comment">// aと等価な正規表現</span></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> nsa = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.ch(<span class="charliteral">&#39;a&#39;</span>);</div></div><!-- fragment --> 
+</div>
+</div>
+<a id="a88ad4b311d4356d61b9007198bc29d94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88ad4b311d4356d61b9007198bc29d94">&#9670;&nbsp;</a></span>digit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::digit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>数字にヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>数字にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="a9109ab2c50be2609d86cc121e7eab2ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9109ab2c50be2609d86cc121e7eab2ea">&#9670;&nbsp;</a></span>graph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::graph </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>アルファベット，数字, 記号にヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>アルファベット, 数字，記号にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="aac6e8747ba4510803b356d699cd2ee94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6e8747ba4510803b356d699cd2ee94">&#9670;&nbsp;</a></span>link()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::link </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td>
+          <td class="paramname"><em>lv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td>
+          <td class="paramname"><em>rv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>lvが指し示すの正規表現とrvが指し示す正規表現を結合した正規表現をNFAに追加する。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lv</td><td>正規表現を指し示すポインタ </td></tr>
+    <tr><td class="paramname">rv</td><td>正規表現を指し示すポインタ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>lrが指し示す正規表現とrvが指し示す正規表現を結合した正規表現を指し示すポインタ</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="structNFA.html">NFA</a> <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>;</div><div class="line"></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> nsa = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.ch(<span class="charliteral">&#39;a&#39;</span>), nsb = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.ch(<span class="charliteral">&#39;b&#39;</span>);</div><div class="line"></div><div class="line"><span class="comment">// abと等価な正規表現</span></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> ns = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.link(nsa, nsb);</div></div><!-- fragment --> 
+</div>
+</div>
+<a id="a49bed9b458e59479ca9e7eaa42ebfd82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49bed9b458e59479ca9e7eaa42ebfd82">&#9670;&nbsp;</a></span>lower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::lower </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>英小文字にヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>英小文字にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="a0b70e9276d4fb57d16b126763cf80ad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b70e9276d4fb57d16b126763cf80ad2">&#9670;&nbsp;</a></span>nfa2dfa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="dfa_8h.html#a256017fdca54a982bc9b5fb221f41c03">DFA</a> NFA::nfa2dfa </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>現在のNFAの状態と等価なDFAを生成するメソッド </p><dl class="section return"><dt>戻り値</dt><dd>現在のNFAの状態と等価なDFA </dd></dl>
+
+</div>
+</div>
+<a id="a78e271faa9e585280a4d0a7baa9fb7f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78e271faa9e585280a4d0a7baa9fb7f2">&#9670;&nbsp;</a></span>one_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::one_of </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>list内のどれかの文字にヒットする正規表現をNFAに追加する。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>文字のリスト </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>list内のどれかの文字にヒットする正規表現を指し示すポインタ <div class="fragment"><div class="line"><a class="code" href="structNFA.html">NFA</a> <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>;</div><div class="line"></div><div class="line"><span class="comment">// [question]と等価な正規表現</span></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> ns = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.one_of(<span class="stringliteral">&quot;question&quot;</span>);</div></div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a2a91d5c41c7a20060962fcf01238798e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a91d5c41c7a20060962fcf01238798e">&#9670;&nbsp;</a></span>operator[]()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structNFAState.html">NFAState</a> &amp; NFA::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>NFAの状態に添字アクセスするための演算子オーバーロード。 ほぼテスト用に実装しているので、基本的にはこれを利用することはない。 NFA::vec::operator[]と書くのが面倒なので、NFA::operator[]と書けるようにしただけのもの。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>インデックス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>NFAの状態を示す要素への参照 </dd></dl>
+
+</div>
+</div>
+<a id="a11abeffdbfbd9c98c95e6ba572a0fcef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11abeffdbfbd9c98c95e6ba572a0fcef">&#9670;&nbsp;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::print </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>アルファベット，数字, 記号, スペースにヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>アルファベット, 数字，記号にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="a5fa985ce753cdb4528fd9cde7934b998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fa985ce753cdb4528fd9cde7934b998">&#9670;&nbsp;</a></span>punct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::punct </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>記号にヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>アルファベット, 数字，記号にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="a4aa1e4a8cf2694d26c19d894c92f1aa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aa1e4a8cf2694d26c19d894c92f1aa9">&#9670;&nbsp;</a></span>question()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::question </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>lvが指し示すの正規表現を0回か1回繰り返す正規表現をNFAに追加する。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>正規表現を指し示すポインタ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>vが指し示す正規表現を0回か1回繰り返す正規表現を指し示すポインタ</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="structNFA.html">NFA</a> <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>;</div><div class="line"></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> nsa = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.ch(<span class="charliteral">&#39;a&#39;</span>);</div><div class="line"></div><div class="line"><span class="comment">// a?と等価な正規表現</span></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> ns = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.question(nsa);</div></div><!-- fragment --> 
+</div>
+</div>
+<a id="ac601c1d5efd5d7fec117a7bb226bf90c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac601c1d5efd5d7fec117a7bb226bf90c">&#9670;&nbsp;</a></span>range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::range </td>
+          <td>(</td>
+          <td class="paramtype">const char&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char&#160;</td>
+          <td class="paramname"><em>e</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>sからeのどれかの文字にヒットする正規表現をNFAに追加する。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>文字の範囲の始端 </td></tr>
+    <tr><td class="paramname">e</td><td>文字の範囲の終端 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>sからeのどれかの文字にヒットする正規表現を指し示すポインタ <div class="fragment"><div class="line"><a class="code" href="structNFA.html">NFA</a> <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>;</div><div class="line"></div><div class="line"><span class="comment">// [0-9]と等価な正規表現</span></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> ns = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.range(<span class="charliteral">&#39;0&#39;</span>, <span class="charliteral">&#39;9&#39;</span>);</div></div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="aa2cee15a7b6a6083cc928ac0d2ee9be3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2cee15a7b6a6083cc928ac0d2ee9be3">&#9670;&nbsp;</a></span>select()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::select </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td>
+          <td class="paramname"><em>lv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td>
+          <td class="paramname"><em>rv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>lvが指し示すの正規表現とrvが指し示す正規表現を選択する正規表現をNFAに追加する。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lv</td><td>正規表現を指し示すポインタ </td></tr>
+    <tr><td class="paramname">rv</td><td>正規表現を指し示すポインタ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>lrが指し示す正規表現とrvが指し示す正規表現を選択する正規表現を指し示すポインタ</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="structNFA.html">NFA</a> <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>;</div><div class="line"></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> nsa = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.ch(<span class="charliteral">&#39;a&#39;</span>), nsb = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.ch(<span class="charliteral">&#39;b&#39;</span>);</div><div class="line"></div><div class="line"><span class="comment">// (a|b)</span></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> ns = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.select(nsa, nsb);</div></div><!-- fragment --> 
+</div>
+</div>
+<a id="af6818c9926ab49d9f335936e26a46631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6818c9926ab49d9f335936e26a46631">&#9670;&nbsp;</a></span>star()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::star </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>lvが指し示すの正規表現を0回以上繰り返す正規表現をNFAに追加する。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>正規表現を指し示すポインタ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>vが指し示す正規表現を0回以上繰り返す正規表現を指し示すポインタ</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="structNFA.html">NFA</a> <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>;</div><div class="line"></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> nsa = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.ch(<span class="charliteral">&#39;a&#39;</span>);</div><div class="line"></div><div class="line"><span class="comment">// a*と等価な正規表現</span></div><div class="line"><a class="code" href="structNFASubsetRef.html">NFASubsetRef</a> ns = <a class="code" href="structNFA.html#a25adeee2749e950ba161d83421ce3008">nfa</a>.star(nsa);</div></div><!-- fragment --> 
+</div>
+</div>
+<a id="ae5d063783d3bb79b13f6f133a6956997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5d063783d3bb79b13f6f133a6956997">&#9670;&nbsp;</a></span>upper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::upper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>英大文字にヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>英大文字にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<a id="abe2daad1fbe63d190da8e74fc20097c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2daad1fbe63d190da8e74fc20097c9">&#9670;&nbsp;</a></span>xdigit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::xdigit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>16進数の文字にヒットする正規表現をNFAに追加する。 </p><dl class="section return"><dt>戻り値</dt><dd>16進数の文字にヒットする正規表現を指し示すポインタ </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">メンバ詳解</h2>
+<a id="a25adeee2749e950ba161d83421ce3008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25adeee2749e950ba161d83421ce3008">&#9670;&nbsp;</a></span>nfa</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> NFA::nfa</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>もっとも最後に作成された正規表現を指し示すポインタ </p>
+
+</div>
+</div>
+<a id="a3f7f460cfa743a8c3b03b4de069b4707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f7f460cfa743a8c3b03b4de069b4707">&#9670;&nbsp;</a></span>REF_UNDEFINED</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const long NFA::REF_UNDEFINED = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>遷移先がまだ定義されていない状態を表す定数 </p>
+
+</div>
+</div>
+<a id="a80b97c818f23ddb4af5bd97b165567b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80b97c818f23ddb4af5bd97b165567b1">&#9670;&nbsp;</a></span>RULE_EPSILON</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char NFA::RULE_EPSILON = -2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ε遷移の規則を表す定数 </p>
+
+</div>
+</div>
+<a id="a301adee5ffe0755b800a17fcafff0fd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a301adee5ffe0755b800a17fcafff0fd5">&#9670;&nbsp;</a></span>RULE_UNDEFINED</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char NFA::RULE_UNDEFINED = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>NFAの状態遷移の規則がまだ定義されていない状態を表す定数 </p>
+
+</div>
+</div>
+<a id="a8b78e42a37902fc6103edbd72fb3e9c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b78e42a37902fc6103edbd72fb3e9c3">&#9670;&nbsp;</a></span>vec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="structNFAState.html">NFAState</a>&gt; NFA::vec</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NFAの状態を保持している動的配列 </p>
+
+</div>
+</div>
+<hr/>この構造体詳解は次のファイルから抽出されました:<ul>
+<li>include/<a class="el" href="nfa_8h_source.html">nfa.h</a></li>
+<li>src/<a class="el" href="nfa_8cpp.html">nfa.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

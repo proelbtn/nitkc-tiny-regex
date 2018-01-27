@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinyRegex: include/tiny_regex.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinyRegex
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An Tiny Regex Engine.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">tiny_regex.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="tiny__regex_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="nfa_8h.html">nfa.h</a>&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dfa_8h.html">dfa.h</a>&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classTinyRegex.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTinyRegex.html">TinyRegex</a> {</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="dfa_8h.html#a256017fdca54a982bc9b5fb221f41c03">DFA</a> dfa;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">struct </span>{</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classTinyRegex.html#ab094286fb32143cad8f944b239bc62af">   19</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTinyRegex.html#ab094286fb32143cad8f944b239bc62af">first</a>;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classTinyRegex.html#aa0df7e6f26e2d0587758f1950d051d00">   20</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTinyRegex.html#aa0df7e6f26e2d0587758f1950d051d00">last</a>;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    } flags;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classTinyRegex.html#a6f09b10c087e1f30865b6139c4582399">TinyRegex</a>(std::string regex);</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classTinyRegex.html#a6f09b10c087e1f30865b6139c4582399">TinyRegex</a>(<a class="code" href="structNFA.html">NFA</a> nfa, <span class="keywordtype">bool</span> <a class="code" href="classTinyRegex.html#ab094286fb32143cad8f944b239bc62af">first</a>, <span class="keywordtype">bool</span> <a class="code" href="classTinyRegex.html#aa0df7e6f26e2d0587758f1950d051d00">last</a>);</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classTinyRegex.html#a2a68d9efef45706cc00ad214c4219807">test</a>(<span class="keyword">const</span> std::string &amp;txt) <span class="keyword">const</span>;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::string <a class="code" href="classTinyRegex.html#acaad119c2b36fba3fa249aed1d0f56ab">dump</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div><div class="ttc" id="classTinyRegex_html_a6f09b10c087e1f30865b6139c4582399"><div class="ttname"><a href="classTinyRegex.html#a6f09b10c087e1f30865b6139c4582399">TinyRegex::TinyRegex</a></div><div class="ttdeci">TinyRegex(std::string regex)</div><div class="ttdef"><b>Definition:</b> tiny_regex.cpp:121</div></div>
+<div class="ttc" id="classTinyRegex_html_a2a68d9efef45706cc00ad214c4219807"><div class="ttname"><a href="classTinyRegex.html#a2a68d9efef45706cc00ad214c4219807">TinyRegex::test</a></div><div class="ttdeci">bool test(const std::string &amp;txt) const</div><div class="ttdef"><b>Definition:</b> tiny_regex.cpp:128</div></div>
+<div class="ttc" id="classTinyRegex_html_aa0df7e6f26e2d0587758f1950d051d00"><div class="ttname"><a href="classTinyRegex.html#aa0df7e6f26e2d0587758f1950d051d00">TinyRegex::last</a></div><div class="ttdeci">bool last</div><div class="ttdef"><b>Definition:</b> tiny_regex.h:20</div></div>
+<div class="ttc" id="classTinyRegex_html_ab094286fb32143cad8f944b239bc62af"><div class="ttname"><a href="classTinyRegex.html#ab094286fb32143cad8f944b239bc62af">TinyRegex::first</a></div><div class="ttdeci">bool first</div><div class="ttdef"><b>Definition:</b> tiny_regex.h:19</div></div>
+<div class="ttc" id="classTinyRegex_html"><div class="ttname"><a href="classTinyRegex.html">TinyRegex</a></div><div class="ttdef"><b>Definition:</b> tiny_regex.h:13</div></div>
+<div class="ttc" id="nfa_8h_html"><div class="ttname"><a href="nfa_8h.html">nfa.h</a></div><div class="ttdoc">NFAを表す諸々の構造体の宣言 </div></div>
+<div class="ttc" id="dfa_8h_html_a256017fdca54a982bc9b5fb221f41c03"><div class="ttname"><a href="dfa_8h.html#a256017fdca54a982bc9b5fb221f41c03">DFA</a></div><div class="ttdeci">std::vector&lt; DFAState &gt; DFA</div><div class="ttdef"><b>Definition:</b> dfa.h:20</div></div>
+<div class="ttc" id="classTinyRegex_html_acaad119c2b36fba3fa249aed1d0f56ab"><div class="ttname"><a href="classTinyRegex.html#acaad119c2b36fba3fa249aed1d0f56ab">TinyRegex::dump</a></div><div class="ttdeci">std::string dump() const</div><div class="ttdef"><b>Definition:</b> tiny_regex.cpp:148</div></div>
+<div class="ttc" id="structNFA_html"><div class="ttname"><a href="structNFA.html">NFA</a></div><div class="ttdef"><b>Definition:</b> nfa.h:31</div></div>
+<div class="ttc" id="dfa_8h_html"><div class="ttname"><a href="dfa_8h.html">dfa.h</a></div><div class="ttdoc">DFAを表す諸々の構造体の宣言 </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

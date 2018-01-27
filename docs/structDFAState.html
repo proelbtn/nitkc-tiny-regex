@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinyRegex: DFAState 構造体</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinyRegex
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An Tiny Regex Engine.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-attribs">公開変数類</a> &#124;
+<a href="structDFAState-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">DFAState 構造体</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="dfa_8h_source.html">dfa.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ad4d7f632263c7268c3da503d541efdc9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDFAState.html#ad4d7f632263c7268c3da503d541efdc9">DFAState</a> ()</td></tr>
+<tr class="separator:ad4d7f632263c7268c3da503d541efdc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+公開変数類</h2></td></tr>
+<tr class="memitem:a080e034311cf9e7497b855f82cabdca0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDFAState.html#a080e034311cf9e7497b855f82cabdca0">is_end</a></td></tr>
+<tr class="memdesc:a080e034311cf9e7497b855f82cabdca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">この状態が終了状態になるかどうかを示すフラグ  <a href="#a080e034311cf9e7497b855f82cabdca0">[詳解]</a><br /></td></tr>
+<tr class="separator:a080e034311cf9e7497b855f82cabdca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a190104d7fa2fac2f1361caba65e6a5f5"><td class="memItemLeft" align="right" valign="top">std::map&lt; char, long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDFAState.html#a190104d7fa2fac2f1361caba65e6a5f5">refs</a></td></tr>
+<tr class="memdesc:a190104d7fa2fac2f1361caba65e6a5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">遷移元の文字列と遷移先の状態のインデックスを管理する変数  <a href="#a190104d7fa2fac2f1361caba65e6a5f5">[詳解]</a><br /></td></tr>
+<tr class="separator:a190104d7fa2fac2f1361caba65e6a5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="ad4d7f632263c7268c3da503d541efdc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4d7f632263c7268c3da503d541efdc9">&#9670;&nbsp;</a></span>DFAState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DFAState::DFAState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">メンバ詳解</h2>
+<a id="a080e034311cf9e7497b855f82cabdca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080e034311cf9e7497b855f82cabdca0">&#9670;&nbsp;</a></span>is_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DFAState::is_end</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>この状態が終了状態になるかどうかを示すフラグ </p>
+
+</div>
+</div>
+<a id="a190104d7fa2fac2f1361caba65e6a5f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a190104d7fa2fac2f1361caba65e6a5f5">&#9670;&nbsp;</a></span>refs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;char, long&gt; DFAState::refs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>遷移元の文字列と遷移先の状態のインデックスを管理する変数 </p>
+
+</div>
+</div>
+<hr/>この構造体詳解は次のファイルから抽出されました:<ul>
+<li>include/<a class="el" href="dfa_8h_source.html">dfa.h</a></li>
+<li>src/<a class="el" href="dfa_8cpp.html">dfa.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

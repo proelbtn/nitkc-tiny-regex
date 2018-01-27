@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinyRegex: src/tiny_regex.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinyRegex
+   &#160;<span id="projectnumber">v0.1.0</span>
+   </div>
+   <div id="projectbrief">An Tiny Regex Engine.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">関数</a>  </div>
+  <div class="headertitle">
+<div class="title">tiny_regex.cpp ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>TinyRegexクラスの実装  
+<a href="#details">[詳解]</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="tiny__regex_8h_source.html">tiny_regex.h</a>&quot;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &quot;<a class="el" href="nfa_8h_source.html">nfa.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="dfa_8h_source.html">dfa.h</a>&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:a69ae927a936bb4d4467c1ecc7b51949e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tiny__regex_8cpp.html#a69ae927a936bb4d4467c1ecc7b51949e">selects</a> (<a class="el" href="structNFA.html">NFA</a> &amp;nfa, std::string::const_iterator &amp;it)</td></tr>
+<tr class="separator:a69ae927a936bb4d4467c1ecc7b51949e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47a8b1368fdb338fc2b6e1afd2da9096"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tiny__regex_8cpp.html#a47a8b1368fdb338fc2b6e1afd2da9096">term</a> (<a class="el" href="structNFA.html">NFA</a> &amp;nfa, std::string::const_iterator &amp;it)</td></tr>
+<tr class="separator:a47a8b1368fdb338fc2b6e1afd2da9096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4639193f96e68ed77e3ff2f42ce42bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tiny__regex_8cpp.html#ad4639193f96e68ed77e3ff2f42ce42bb">str2nfa</a> (<a class="el" href="structNFA.html">NFA</a> &amp;nfa, std::string str)</td></tr>
+<tr class="separator:ad4639193f96e68ed77e3ff2f42ce42bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34ed737d4c3f5efbb7ee4517fea9567d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tiny__regex_8cpp.html#a34ed737d4c3f5efbb7ee4517fea9567d">selects</a> (<a class="el" href="structNFA.html">NFA</a> &amp;nfa, std::string str)</td></tr>
+<tr class="separator:a34ed737d4c3f5efbb7ee4517fea9567d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00349e7fd6cc19442a89021e80f24097"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dfa_8h.html#a256017fdca54a982bc9b5fb221f41c03">DFA</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tiny__regex_8cpp.html#a00349e7fd6cc19442a89021e80f24097">str2dfa</a> (std::string str)</td></tr>
+<tr class="separator:a00349e7fd6cc19442a89021e80f24097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>TinyRegexクラスの実装 </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a69ae927a936bb4d4467c1ecc7b51949e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ae927a936bb4d4467c1ecc7b51949e">&#9670;&nbsp;</a></span>selects() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> selects </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structNFA.html">NFA</a> &amp;&#160;</td>
+          <td class="paramname"><em>nfa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string::const_iterator &amp;&#160;</td>
+          <td class="paramname"><em>it</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34ed737d4c3f5efbb7ee4517fea9567d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34ed737d4c3f5efbb7ee4517fea9567d">&#9670;&nbsp;</a></span>selects() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> selects </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structNFA.html">NFA</a> &amp;&#160;</td>
+          <td class="paramname"><em>nfa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00349e7fd6cc19442a89021e80f24097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00349e7fd6cc19442a89021e80f24097">&#9670;&nbsp;</a></span>str2dfa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="dfa_8h.html#a256017fdca54a982bc9b5fb221f41c03">DFA</a> str2dfa </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4639193f96e68ed77e3ff2f42ce42bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4639193f96e68ed77e3ff2f42ce42bb">&#9670;&nbsp;</a></span>str2nfa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> str2nfa </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structNFA.html">NFA</a> &amp;&#160;</td>
+          <td class="paramname"><em>nfa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47a8b1368fdb338fc2b6e1afd2da9096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47a8b1368fdb338fc2b6e1afd2da9096">&#9670;&nbsp;</a></span>term()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNFASubsetRef.html">NFASubsetRef</a> term </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structNFA.html">NFA</a> &amp;&#160;</td>
+          <td class="paramname"><em>nfa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string::const_iterator &amp;&#160;</td>
+          <td class="paramname"><em>it</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>
