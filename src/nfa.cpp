@@ -82,7 +82,7 @@ NFASubsetRef NFA::star(const NFASubsetRef v) {
     return nfa;
 }
 
-NFASubsetRef NFA::qestion(const NFASubsetRef v) {
+NFASubsetRef NFA::question(const NFASubsetRef v) {
     nfa.start = vec.size();
     nfa.end = v.end;
 

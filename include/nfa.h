@@ -35,7 +35,7 @@ struct NFA {
     NFASubsetRef select(const NFASubsetRef lv, const NFASubsetRef rv);
 
     NFASubsetRef star(const NFASubsetRef v);
-    NFASubsetRef qestion(const NFASubsetRef v);
+    NFASubsetRef question(const NFASubsetRef v);
 
     // cntrl and space is not implemented.
     NFASubsetRef range(const char s, const char e);

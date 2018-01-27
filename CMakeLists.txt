@@ -3,5 +3,5 @@ project(tiny_regex)
 
 include_directories(./include /usr/local/include)
 
-add_subdirectory(lib)
+add_subdirectory(src)
 add_subdirectory(test)

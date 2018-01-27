@@ -13,7 +13,7 @@ TEST(NFAState, CONSTRUCTOR) {
 #define TEST_NFASTATE(NS, RULE, REF_F, REF_S) \
     EXPECT_EQ(NS.rule, RULE); EXPECT_EQ(NS.refs.first, REF_F); EXPECT_EQ(NS.refs.second, REF_S);
 
-TEST(NFAStatesVector, ADD_NFA) {
+TEST(NFAStatesVector, CH) {
     NFA nfa;
     char rule = 'a';
     NFASubsetRef ns1 = nfa.ch(rule);
@@ -70,20 +70,4 @@ TEST(NFAStatesVector, STAR) {
     TEST_NFASTATE(nfa[ns1.end], NFA::RULE_EPSILON, ns2.start, NFA::REF_UNDEFINED);
     TEST_NFASTATE(nfa[ns2.start], NFA::RULE_EPSILON, ns1.start, ns2.end);
     TEST_NFASTATE(nfa[ns2.end], NFA::RULE_UNDEFINED, NFA::REF_UNDEFINED, NFA::REF_UNDEFINED);
-}
-
-TEST(NFAStatesVector, RANGE) {
-    NFA nfa;
-    char rule1 = 'a', rule2 = 'c';
-    NFASubsetRef ns1 = nfa.range(rule1, rule2);
-
-    EXPECT_EQ(ns1.start, 8);
-    EXPECT_EQ(ns1.end, 9);
-}
-
-TEST(NFA, NFA2DFA) {
-    NFA nfa;
-    nfa.link(nfa.ch('a'), nfa.link(nfa.star(nfa.select(nfa.ch('a'), nfa.ch('b'))), nfa.ch('a')));
-
-    DFA dfa = nfa.nfa2dfa();
 }

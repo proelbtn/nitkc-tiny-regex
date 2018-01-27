@@ -9,8 +9,28 @@
 #include <dfa.h>
 #include <tiny_regex.h>
 
+NFASubsetRef selects(NFA &nfa, std::string::const_iterator &it);
 NFASubsetRef term(NFA &nfa, std::string::const_iterator &it);
 NFASubsetRef str2nfa(NFA &nfa, std::string str);
+
+NFASubsetRef selects(NFA &nfa, std::string str) {
+    NFASubsetRef ns;
+
+    for(std::string::const_iterator it = str.begin(); it != str.end(); it++) {
+        NFASubsetRef tns;
+
+        if(*(it + 1) == '-') {
+            tns = nfa.range(*it, *(it + 2));
+            it += 2;
+        }
+        else tns = nfa.ch(*it);
+
+        if (ns.start == NFA::REF_UNDEFINED) ns = tns;
+        else ns = nfa.select(ns, tns);
+    }
+
+    return ns;
+}
 
 NFASubsetRef term(NFA &nfa, std::string::const_iterator &it) {
     NFASubsetRef ns;
@@ -24,6 +44,16 @@ NFASubsetRef term(NFA &nfa, std::string::const_iterator &it) {
             else if (*it == ')') i--;
         }
         ns = str2nfa(nfa, std::string(sit, it));
+    }
+    else if (*it == '['){
+        int i = 1;
+        std::string::const_iterator sit = it + 1;
+        while(i != 0) {
+            it++;
+            if(*it == '[') i++;
+            else if (*it == ']') i--;
+        }
+        ns = selects(nfa, std::string(sit, it));
     }
     else ns = nfa.ch(*it);
 
@@ -41,6 +71,10 @@ NFASubsetRef str2nfa(NFA &nfa, std::string str) {
         ns = nfa.star(ns);
         it++;
     }
+    else if(*it == '?') {
+        ns = nfa.question(ns);
+        it++;
+    }
 
     while(it != str.cend()) {
         NFASubsetRef tns;
@@ -54,6 +88,10 @@ NFASubsetRef str2nfa(NFA &nfa, std::string str) {
         tns = term(nfa, it);
         if(*it == '*') {
             tns = nfa.star(tns);
+            it++;
+        }
+        else if(*it == '?') {
+            tns = nfa.question(tns);
             it++;
         }
 
@@ -99,15 +137,21 @@ bool TinyRegex::test(const std::string &txt) const {
 
         start++;
     }
-    return false;
+    return dfa[pos].is_end;
 }
 
 std::string TinyRegex::dump() const {
-    std::stringstream ss;
+    std::stringstream ss; bool ff = true;
 
-    ss << "digraph G { 0";
-    for(size_t i = 0; i < dfa.size(); i++) if(dfa[i].is_end) ss << ", " << i;
-    ss << " [shape=square]; 0 [shape=doublecircle]; node [shape=circle]; ";
+    ss << "digraph G {";
+    for(size_t i = 0; i < dfa.size(); i++) {
+        if(dfa[i].is_end) {
+            ss << (ff ? " " : ", ") << i;
+            ff = false;
+        }
+    }
+    ss << " [shape=square];";
+    ss << " node [shape=circle]; ";
     for(size_t i = 0; i < dfa.size(); i++)
         for(auto it = dfa[i].refs.cbegin(); it != dfa[i].refs.cend(); it++)
             ss << i << " -> " << it->second << " [label=\"" << it->first << "\"]; ";
