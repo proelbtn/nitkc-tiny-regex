@@ -112,6 +112,8 @@ NFASubsetRef NFA::question(const NFASubsetRef v) {
     vec[nfa.start].rule = NFA::RULE_EPSILON;
     vec[nfa.start].refs.first = v.start;
     vec[nfa.start].refs.second = v.end;
+
+    return nfa;
 }
 
 NFASubsetRef NFA::range(const char s, const char e) {
@@ -185,7 +187,7 @@ const NFAState& NFA::operator[](unsigned long i) const {
 void calculate_epsilon_closures(const std::vector<NFAState> &nss, std::vector<std::set<long>> &ecs) {
     std::vector<bool> flag(nss.size(), false);
 
-    for(long i = 0; i < nss.size(); i++) {
+    for(size_t i = 0; i < nss.size(); i++) {
         std::stack<long> stack;
         stack.push(i);
 
@@ -230,7 +232,7 @@ DFA NFA::nfa2dfa() {
 
     // for all dfa_states...
     dfa_states.push_back(epsilon_closures[nfa.start]);
-    for(long dsi = 0; dsi < dfa_states.size(); dsi++) {
+    for(size_t dsi = 0; dsi < dfa_states.size(); dsi++) {
         std::map<char, std::set<long>> ch_closures;
 
         // calculate the set of NFAState which it able to go from dsi with an character.
@@ -250,7 +252,7 @@ DFA NFA::nfa2dfa() {
             if(it != dfa_states.end()) { to = std::distance(dfa_states.begin(), it); }
             else { to = dfa_states.size(); dfa_states.push_back(cs.second); }
 
-            dfa_ref_records.push_back({from, rule, to});
+            dfa_ref_records.push_back(DFARefRecord({from, rule, to}));
         });
     }
 

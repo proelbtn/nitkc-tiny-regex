@@ -5,3 +5,8 @@ include_directories(./include /usr/local/include)
 
 add_subdirectory(src)
 add_subdirectory(test)
+
+set(SRCS main.cpp)
+
+add_executable(main ${SRCS})
+target_link_libraries(main tiny_regex)
