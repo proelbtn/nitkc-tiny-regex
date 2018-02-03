@@ -8,8 +8,8 @@ libtiny_regex.a:
 	cd src; make $@; cd ..
 
 .cpp.o:
-	g++ ${CXXFLAGS} ${LDFLAGS} -c -o $@ $<
+	g++ ${CXXFLAGS} -c -o $@ $<
 
 clean:
 	cd src; make $@; cd ..
-	rm -rf main
+	rm -rf main main.o

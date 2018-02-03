@@ -14,7 +14,7 @@ struct MenuEntry {
 class CLIMenu {
     std::string title;
     std::vector<MenuEntry> menus;
-public:
+    public:
     static const int CODE_SUCCESSFUL = 0;
     static const int CODE_ERROR = 1;
     static const int CODE_EXIT = 2;
@@ -25,8 +25,8 @@ public:
 
     void add_entry(std::string description, std::function<int(void)> callback) {
         MenuEntry entry = {
-                description: description,
-                callback: callback
+description: description,
+             callback: callback
         };
 
         menus.push_back(entry);
@@ -34,6 +34,7 @@ public:
 
     void display() const {
         while(true) {
+            std::string buf;
             size_t input;
 
             std::cout << title << std::endl;
@@ -44,9 +45,11 @@ public:
             std::cout << "99 : Quit" << std::endl;
 
             std::cout << "Your input : ";
-            std::cin >> input;
+            std::cin >> buf;
 
             try {
+                input = std::stoi(buf);
+
                 if(input == 99) return;
 
                 switch(menus.at(input).callback()) {
@@ -60,8 +63,11 @@ public:
                         throw "";
                 }
             }
-            catch (const std::exception &e) {
-
+            catch (const std::invalid_argument &e) {
+                std::cerr << "Caught Exception : Invalid Argument!!!" << std::endl;
+            }
+            catch (const std::out_of_range &e) {
+                std::cerr << "Caught Exception : Out of Range!!!" << std::endl;
             }
 
             std::cout << std::endl;
@@ -75,13 +81,13 @@ int sample_regex() {
 
     menu.set_title("Sample Regex");
     menu.add_entry("Test String", [&]() {
-        std::string input;
-        std::cout << "Your String : ";
-        std::cin >> input;
+            std::string input;
+            std::cout << "Your String : ";
+            std::cin >> input;
 
-        std::cout << "Result : " << std::boolalpha << regex.test(input) << std::endl;
-        return CLIMenu::CODE_SUCCESSFUL;
-    });
+            std::cout << "Result : " << std::boolalpha << regex.test(input) << std::endl;
+            return CLIMenu::CODE_SUCCESSFUL;
+            });
 
     menu.display();
 
@@ -95,23 +101,23 @@ int arbitrary_regex() {
 
     menu.set_title("Arbitrary Regex");
     menu.add_entry("Change Regex", [&]() {
-        std::cout << "Your Regex : ";
-        std::cin >> regs;
-        regex = TinyRegex(regs);
-        return CLIMenu::CODE_SUCCESSFUL;
-    });
+            std::cout << "Your Regex : ";
+            std::cin >> regs;
+            regex = TinyRegex(regs);
+            return CLIMenu::CODE_SUCCESSFUL;
+            });
     menu.add_entry("Check Regex", [&]() {
-        std::cout << "Current Regex : " << regs << std::endl;
-        return CLIMenu::CODE_SUCCESSFUL;
-    });
+            std::cout << "Current Regex : " << regs << std::endl;
+            return CLIMenu::CODE_SUCCESSFUL;
+            });
     menu.add_entry("Test String", [&]() {
-        std::string input;
-        std::cout << "Your String : ";
-        std::cin >> input;
-        std::cout << "Result : " << std::boolalpha << regex.test(input) << std::endl;
+            std::string input;
+            std::cout << "Your String : ";
+            std::cin >> input;
+            std::cout << "Result : " << std::boolalpha << regex.test(input) << std::endl;
 
-        return CLIMenu::CODE_SUCCESSFUL;
-    });
+            return CLIMenu::CODE_SUCCESSFUL;
+            });
 
     menu.display();
 
@@ -123,13 +129,13 @@ int main(int argc, const char *argv[]) {
 
     menu.set_title("Top Menu");
     menu.add_entry("Sample Regex : ^a(a|b)*a$", []() {
-        std::cout << std::endl;
-        return sample_regex();
-    });
+            std::cout << std::endl;
+            return sample_regex();
+            });
     menu.add_entry("Your Arbitrary Regex", []() {
-        std::cout << std::endl;
-        return arbitrary_regex();
-    });
+            std::cout << std::endl;
+            return arbitrary_regex();
+            });
 
     menu.display();
 
